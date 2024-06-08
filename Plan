@@ -1,0 +1,146 @@
+
+Jun 07, 24:  Do you even need fastApi when you have APi Gateway???
+
+
+
+-1. Deploy FastApi on Lambda using Zappa: 
+
+						Step 1: Install Zappa
+						Ensure you have Zappa installed. You can install it via pip:
+
+						pip install zappa
+						Step 2: Create a FastAPI Application
+						Write your FastAPI application code. Here's a simple example:
+				
+						from fastapi import FastAPI
+
+						app = FastAPI()
+
+						@app.get("/")
+						def read_root():
+								return {"Hello": "World"}
+						Save this code in a file named app.py.
+
+						Step 3: Initialize Zappa
+						Navigate to the directory containing your FastAPI application (app.py) and initialize Zappa
+						
+						zappa init
+						Follow the prompts to configure Zappa for your project. You'll need to provide details such as the name of your project, the environment (e.g., dev, staging, prod), and AWS credentials.
+
+						Step 4: Deploy to AWS Lambda
+						Once you've initialized Zappa, you can deploy your FastAPI application to AWS Lambda:
+
+		
+						zappa deploy <environment>
+						Replace <environment> with the name of the environment you configured in Step 3 (e.g., dev, staging, prod).
+
+						Step 5: Access Your Deployed Application
+						After the deployment is successful, Zappa will provide you with a URL where your FastAPI application is deployed. You can access your application using this URL.
+
+						Step 6: Update and Redeploy (if needed)
+						If you make changes to your FastAPI application, you can update and redeploy it using the following command:
+
+
+						zappa update <environment>
+
+
+
+0. Ref:   https://gist.github.com/beabetterdevv/6778b696e31e653614a0117359fb76a0
+
+          https://www.youtube.com/watch?v=T4MQrRDo20w
+
+          
+          https://www.youtube.com/watch?v=M91vXdjve7A&list=PL9nWRykSBSFjHhg11falLLKxVExFnt1_c&index=7 
+
+1. npx create-react-app amplify-lambda-jun-07
+   cd amplify-lambda-jun-07
+   npm start
+   
+   
+   amplify init
+  
+  
+   amplify add api                                        : can you add 2 api's?
+
+                       path  : /customers/{customerId}    : maybe /postPerson  -?
+
+
+   Lambda function name: amplifylambdajun07cf424771
+
+   a) if JS:   Update node 14.x to node 20.x manually: 
+                /home/micah/Desktop/mobile_app/amplify-lambda-demo-jun-05/amplify/backend/function/amplifyjun05/amplifyjun05-cloudformation-template.json
+   
+   
+						 Lambda: index.js update:
+														exports.handler = async (event) => {
+															console.log(event)
+															const customerId = event.pathParameters.customerId;  // API: /customers/123 => 123 becomes customerId
+															const customer = {'customerId': customerId, 'customerName': "Customer " + customerId };
+															const response = {
+																	statusCode: 200,
+															//  Uncomment below to enable CORS requests
+															 headers: {
+																	 "Access-Control-Allow-Origin": "*",
+																	 "Access-Control-Allow-Headers": "*"
+															 }, 
+																	body: JSON.stringify(customer),
+															};
+															return response;
+													};  
+  
+  
+    b) If python : changed from Pythpon 3.8 to Python 3.9  -( python--version)
+     
+                                                            update a] Pipfile
+                                                                    b] ../amplify/backend/function/amplifyjun05/amplifyjun05-cloudformation-template.json
+                                                                   
+    
+						def customer_handler(event, context):
+						print(event)
+						customerId = event['pathParameters']['customerId']  # API: /customers/123 => 123 becomes customerId
+						customer = {'customerId': customerId, 'customerName': "Customer " + customerId}
+						response = {
+								'statusCode': 200,
+								# Uncomment below to enable CORS requests
+								'headers': {
+								    'Access-Control-Allow-Origin': '*',
+								    'Access-Control-Allow-Headers': '*'
+								},
+								'body': json.dumps(customer)
+						}
+						return response
+					
+  
+  amplify push  
+  
+  
+  REST API endpoint: https://kwuuo28m3a.execute-api.us-west-2.amazonaws.com/dev     # it' at API Gateway
+  
+    # example: https://kwuuo28m3a.execute-api.us-west-2.amazonaws.com/dev/customers/3
+  
+  
+  npm install @aws-amplify/ui-react aws-amplify
+  
+  npm install aws-amplify @aws-amplify/ui-react
+  
+  
+  lambda: edit handler -> index.handler   # index.py is the name of the file.   handler.py is the name of the handler function
+
+
+  // change the following: 
+  const myAPI = "June07AmplifyLambda2"  // found here: mobile_app/amplify-lambda-jun-07/amplify/backend/api/June07AmplifyLambda2
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+

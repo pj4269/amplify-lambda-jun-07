@@ -1,0 +1,57 @@
+
+   ref a)  https://www.youtube.com/watch?v=T4MQrRDo20w   => node
+                                                          
+       b)  https://www.youtube.com/watch?v=M91vXdjve7A&list=PL9nWRykSBSFjHhg11falLLKxVExFnt1_c&index=7 = Python
+
+ 1. a) create GateWay Api  : lambda   : HTTP(or rest )  : HTTP is cheaper, lower latency
+ 
+    b) Create a lambda function
+    
+                                 : configure routes  :   GET : GetPerson
+                                                         POST: CreatePerson            => Will Create URL address:  Test it with Postman
+                                                         
+                                                         
+                                                             : https://afyc26k03l.execute-api.us-west-2.amazonaws.com/getPerson
+                                                             
+                                                               https://afyc26k03l.execute-api.us-west-2.amazonaws.com/postPerson                     
+                                                         
+  
+ 2. Amplify : asks for REST (HTTP is not an option) 
+                                                         
+      How do I call it from React frontend? 
+      
+      - go over the react tutorisl? 
+                                                         
+                                                         
+                                                         
+    Testing:
+                                                  
+           GET : send personid=id12737364  - Test   : ok let' try to send this from a) Postman
+                                                                                    b) react frontend - hw?
+//
+  async function getCustomer(e) {
+    let customerId = e.input
+    const restOperation = get({apiName: myAPI, path: path + "/" + customerId})
+    const { body } = await restOperation.response;
+    const response = await body.json();
+    console.log(response)
+    let newCustomers = [...customers]
+    newCustomers.push(response)
+    setCustomers(newCustomers)
+  }
+                                                                                      
+                                                         
+                                                         
+                                                         
+                                                         
+import { post } from 'aws-amplify/api';
+
+// Example POST request
+post('/your-api-endpoint', { body: { key: 'value' } })
+  .then(response => {
+    console.log('POST request successful:', response);
+  })
+  .catch(error => {
+    console.error('Error making POST request:', error);
+  });
+                                                         

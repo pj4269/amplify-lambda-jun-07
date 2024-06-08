@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/customers/{customerId}": {
+      "name": "/customers/{customerId}",
+      "lambdaFunction": "amplifylambdajun07cf424771",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
