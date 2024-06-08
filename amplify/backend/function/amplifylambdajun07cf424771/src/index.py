@@ -1,7 +1,7 @@
 import json
 
 def handler(event, context):
-    print("Heeellllllllllllllo:      ", event )
+    print("Heeelllllllllllo:      ", event )
     customerId = event['pathParameters']['customerId']  # API: /customers/123 => 123 becomes customerId
     customer = {'customerId': customerId, 'customerName': "Customer " + customerId}
 
