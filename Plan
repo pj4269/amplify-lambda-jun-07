@@ -67,29 +67,10 @@ Jun 07, 24:  Do you even need fastApi when you have APi Gateway???
 
    Lambda function name: amplifylambdajun07cf424771
 
-   a) if JS:   Update node 14.x to node 20.x manually: 
-                /home/micah/Desktop/mobile_app/amplify-lambda-demo-jun-05/amplify/backend/function/amplifyjun05/amplifyjun05-cloudformation-template.json
-   
-   
-						 Lambda: index.js update:
-														exports.handler = async (event) => {
-															console.log(event)
-															const customerId = event.pathParameters.customerId;  // API: /customers/123 => 123 becomes customerId
-															const customer = {'customerId': customerId, 'customerName': "Customer " + customerId };
-															const response = {
-																	statusCode: 200,
-															//  Uncomment below to enable CORS requests
-															 headers: {
-																	 "Access-Control-Allow-Origin": "*",
-																	 "Access-Control-Allow-Headers": "*"
-															 }, 
-																	body: JSON.stringify(customer),
-															};
-															return response;
-													};  
+ 
   
   
-    b) If python : changed from Pythpon 3.8 to Python 3.9  -( python--version)
+    a) If python : changed from Pythpon 3.8 to Python 3.9  -( python--version)
      
                                                             update a] Pipfile
                                                                     b] ../amplify/backend/function/amplifyjun05/amplifyjun05-cloudformation-template.json
@@ -109,6 +90,27 @@ Jun 07, 24:  Do you even need fastApi when you have APi Gateway???
 								'body': json.dumps(customer)
 						}
 						return response
+
+   b) if JS:   Update node 14.x to node 20.x manually: 
+                /home/micah/Desktop/mobile_app/amplify-lambda-demo-jun-05/amplify/backend/function/amplifyjun05/amplifyjun05-cloudformation-template.json
+   
+   
+						 Lambda: index.js update:
+														exports.handler = async (event) => {
+															console.log(event)
+															const customerId = event.pathParameters.customerId;  // API: /customers/123 => 123 becomes customerId
+															const customer = {'customerId': customerId, 'customerName': "Customer " + customerId };
+															const response = {
+																	statusCode: 200,
+															//  Uncomment below to enable CORS requests
+															 headers: {
+																	 "Access-Control-Allow-Origin": "*",
+																	 "Access-Control-Allow-Headers": "*"
+															 }, 
+																	body: JSON.stringify(customer),
+															};
+															return response;
+													}; 
 					
   
   amplify push  
